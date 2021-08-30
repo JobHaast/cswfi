@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col">
+    <h1>Top rated</h1>
+  </div>
+</div>
+<div class="div-divider"></div>
+<div class="p-3">
+  <div class="row row-cols-1 row-cols-md-3">
+    <div *ngFor="let film of films$ | async">
+      <top-rated-film-card [film]="film"></top-rated-film-card>
+    </div>
+  </div>
+</div>

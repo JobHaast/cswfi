@@ -1,0 +1,46 @@
+<div *ngIf="!(hall$ | async)">
+  <p>Loading ...</p>
+</div>
+
+<div *ngIf="hall$ | async as hall" class="text-center">
+  <div class="row">
+    <div class="col">
+      <h1 id="hallDetailNameField">{{ hall.name }}</h1>
+    </div>
+  </div>
+  <div class="div-divider pt-3 mb-2"></div>
+  <div class="row">
+    <div class="col">
+      <img
+        src="assets/images/hall.jpg"
+        class="img-fluid mx-auto d-block"
+        alt="Responsive image"
+      />
+    </div>
+  </div>
+  <div class="div-divider pt-3 mb-2"></div>
+  <div class="row">
+    <div class="col">
+      <h3>Description</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col" id="hallDetailDescriptionField">
+      {{ hall.description }}
+    </div>
+  </div>
+  <div class="div-divider pt-3 mb-2"></div>
+  <div class="row">
+    <div class="col">
+      <h4>Info</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+      <p>Seats:</p>
+    </div>
+    <div class="col text-left" id="hallDetailSeatsField">
+      {{ hall.seats }}
+    </div>
+  </div>
+</div>

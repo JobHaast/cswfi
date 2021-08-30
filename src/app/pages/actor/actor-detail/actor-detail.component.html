@@ -1,0 +1,51 @@
+<div *ngIf="!(actor$ | async)">
+  <p>Loading ...</p>
+</div>
+
+<div *ngIf="actor$ | async as actor">
+  <div class="row">
+    <div class="col">
+      <h1>{{ actor.firstName }} {{ actor.lastName }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          *ngIf="actor.image != null"
+          src="{{ baseUrl }}/{{ actor.image }}"
+          class="card-img-top border profile-pic"
+          alt="..."
+        />
+        <img
+          *ngIf="actor.image == null"
+          src="assets/images/hall.jpg"
+          class="card-img-top border profile-pic"
+          alt="..."
+        />
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col"><h4>Description:</h4></div>
+      </div>
+      <div class="row">
+        <div class="col">{{ actor.description }}</div>
+      </div>
+      <div class="div-divider pt-3 mb-2"></div>
+      <div class="row">
+        <div class="col">
+          <h4>Info</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-sm-3">Birthdate:</div>
+        <div class="col">{{ actor.birthDate | date }}</div>
+      </div>
+      <div class="row">
+        <div class="col-3 col-sm-3">Country of origin:</div>
+        <div class="col">{{ actor.country }}</div>
+      </div>
+    </div>
+  </div>
+</div>

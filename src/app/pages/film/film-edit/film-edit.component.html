@@ -1,0 +1,166 @@
+<h2 class="pl-1 pb-3">Edit film</h2>
+<form [formGroup]="filmForm" (ngSubmit)="onSubmit()">
+  <div class="row pb-3">
+    <div class="col">
+      <label>Title</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="title"
+        name="title"
+      />
+      <small *ngIf="title.invalid && (title.dirty || title.touched)">
+        <span class="text-danger">Invalid title</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Released</label>
+      <input
+        type="date"
+        class="form-control"
+        formControlName="released"
+        name="released"
+      />
+      <small *ngIf="released.invalid && (released.dirty || released.touched)">
+        <span class="text-danger">Invalid release date</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Description</label>
+      <textarea
+        class="form-control"
+        formControlName="description"
+        name="description"
+      ></textarea>
+      <small
+        *ngIf="
+          description.invalid && (description.dirty || description.touched)
+        "
+      >
+        <span class="text-danger">Invalid description</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Runtime</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="runtime"
+        name="runtime"
+      />
+      <small *ngIf="runtime.invalid && (runtime.dirty || runtime.touched)">
+        <span class="text-danger">Invalid runtime</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Banner</label>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input
+            #imageInput
+            type="file"
+            class="custom-file-input"
+            accept="image/*"
+            name="banner"
+            (change)="onImagePicked($event)"
+          />
+          <label class="custom-file-label">Choose file</label>
+        </div>
+      </div>
+      <small>
+        <span class="text-danger"></span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Rated</label>
+      <select
+        bindLabel="name"
+        placeholder="Select Category"
+        appendTo="body"
+        [multiple]="true"
+        class="form-control"
+        formControlName="rated"
+        name="rated"
+      >
+        <option *ngFor="let rating of ratings | keyvalue">
+          {{ rating.value }}
+        </option>
+        <small *ngIf="rating.invalid && (rating.dirty || rating.touched)">
+          <span class="text-danger">Invalid title</span>
+        </small>
+      </select>
+      <small>
+        <span class="text-danger"></span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Genres</label>
+      <select
+        bindLabel="name"
+        placeholder="Select Category"
+        appendTo="body"
+        [multiple]="true"
+        class="form-control"
+        formControlName="genres"
+        name="genres"
+      >
+        <option *ngFor="let genre of genresEnum | keyvalue">
+          {{ genre.value }}
+        </option>
+        <small *ngIf="genres.invalid && (genres.dirty || genres.touched)">
+          <span class="text-danger">Invalid title</span>
+        </small>
+      </select>
+      <small>
+        <span class="text-danger"></span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Rating</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="rating"
+        name="title"
+      />
+      <small *ngIf="rating.invalid && (rating.dirty || rating.touched)">
+        <span class="text-danger">Invalid rating, must be between 1-10</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Actors</label>
+      <select
+        bindLabel="name"
+        placeholder="Select Category"
+        appendTo="body"
+        formControlName="actors"
+        [multiple]="true"
+        class="form-control"
+      >
+        <option *ngFor="let actor of actors$ | async" [value]="actor._id">
+          {{ actor.firstName }} {{ actor.lastName }}
+        </option>
+      </select>
+      <small *ngIf="actors.invalid && (actors.dirty || actors.touched)">
+        <span class="text-danger">Invalid actor('s)</span>
+      </small>
+    </div>
+  </div>
+  <div class="pt-3 pb-3">
+    <button
+      type="submit"
+      class="btn btn-primary btn-block"
+      [disabled]="filmForm.invalid"
+    >
+      Edit film
+    </button>
+  </div>
+</form>

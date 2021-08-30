@@ -1,0 +1,7 @@
+.vertical-center {
+  height: 90vh;
+}
+
+.ng-invalid.ng-touched {
+  border-color: red;
+}

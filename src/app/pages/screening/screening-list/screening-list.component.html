@@ -1,0 +1,46 @@
+<div class="row pb-3">
+  <div class="align-content-start mr-auto pl-4">
+    <h1>Screening list</h1>
+  </div>
+  <div class="align-content-end ml-auto pr-4 pt-2" *ngIf="isAdmin$ | async">
+    <a class="btn btn-success" routerLink="create">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </a>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Hall</th>
+      <th *ngIf="isAdmin$ | async">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let screening of screenings$ | async">
+      <td>{{ screening.title }}</td>
+      <td>{{ screening.start | date: 'dd-MM-yyyy hh:mm' }}</td>
+      <td>{{ screening.end | date: 'dd-MM-yyyy hh:mm' }}</td>
+      <td>{{ screening.hall.name }}</td>
+      <td *ngIf="isAdmin$ | async">
+        <div class="btn-group btn-group-sm">
+          <a
+            class="btn btn-primary"
+            routerLink="edit/{{ screening._id }}"
+            *ngIf="isAdmin$ | async"
+          >
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </a>
+          <a class="btn btn-danger" *ngIf="isAdmin$ | async">
+            <fa-icon
+              [icon]="faTrash"
+              (click)="deleteScreening(screening._id)"
+            ></fa-icon>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

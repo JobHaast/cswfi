@@ -1,0 +1,9 @@
+div.div-divider {
+  border-bottom: 1px solid #e3e3e3;
+  width: 100%;
+}
+
+.img-fluid {
+  height: 800px;
+  width: auto;
+}

@@ -1,0 +1,79 @@
+<h2 class="pl-1 pb-3">Create screening</h2>
+<form [formGroup]="screeningForm" (ngSubmit)="onSubmit()">
+  <div class="row pb-3">
+    <div class="col">
+      <label>Start date</label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        formControlName="start"
+        required
+        name="start"
+      />
+      <small *ngIf="start.invalid && (start.dirty || start.touched)">
+        <span class="text-danger">Invalid start date</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>End date</label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        formControlName="end"
+        required
+        name="end"
+      />
+      <small *ngIf="end.invalid && (end.dirty || end.touched)">
+        <span class="text-danger">Invalid end date</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Film</label>
+      <select
+        type="text"
+        class="form-control"
+        formControlName="film"
+        required
+        name="film"
+      >
+        <option [selected]="true" value="">Please select option</option>
+        <option *ngFor="let film of films$ | async" [value]="film._id">
+          {{ film.title }}
+        </option>
+      </select>
+      <small *ngIf="film.invalid && (film.dirty || film.touched)">
+        <span class="text-danger">Invalid film</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Hall</label>
+      <select
+        type="text"
+        class="form-control"
+        formControlName="hall"
+        required
+        name="hall"
+      >
+        <option [selected]="true" value="">Please select option</option>
+        <option *ngFor="let hall of halls$ | async" [value]="hall._id">
+          {{ hall.name }}
+        </option>
+      </select>
+      <small *ngIf="hall.invalid && (hall.dirty || hall.touched)">
+        <span class="text-danger">Invalid hall</span>
+      </small>
+    </div>
+  </div>
+  <div class="pt-3 pb-3">
+    <button
+      type="submit"
+      value="submit"
+      class="btn btn-primary btn-block"
+      [disabled]="screeningForm.invalid"
+    >
+      Create screening
+    </button>
+  </div>
+</form>

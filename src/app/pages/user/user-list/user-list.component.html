@@ -1,0 +1,44 @@
+<div class="row pb-3">
+  <div class="align-content-start mr-auto pl-4">
+    <h1>User list</h1>
+  </div>
+  <div class="align-content-end ml-auto pr-4 pt-2">
+    <a class="btn btn-success" routerLink="create">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </a>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phonenumber</th>
+      <th scope="col">Birthdate</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users$ | async">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.birthDate | date }}</td>
+      <td>
+        <div class="btn-group btn-group-sm">
+          <a class="btn btn-primary" routerLink="edit/{{ user._id }}">
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </a>
+          <a class="btn btn-danger">
+            <fa-icon [icon]="faTrash" (click)="deleteUser(user._id)"></fa-icon>
+          </a>
+          <a class="btn btn-dark" routerLink="details/{{ user._id }}">
+            <fa-icon [icon]="faBookOpen"></fa-icon>
+          </a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

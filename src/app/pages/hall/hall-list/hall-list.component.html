@@ -1,0 +1,16 @@
+<div class="row pb-3">
+  <div class="align-content-start mr-auto pl-4">
+    <h1>Hall list</h1>
+  </div>
+  <div class="align-content-end ml-auto pr-4 pt-2" *ngIf="isAdmin$ | async">
+    <a class="btn btn-success" routerLink="create">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </a>
+  </div>
+  <div class="div-divider"></div>
+</div>
+<div class="row row-cols-1 row-cols-md-3">
+  <div *ngFor="let hall of halls$ | async">
+    <app-hall-card [hall]="hall" (event)="deleteHall($event)"></app-hall-card>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div *ngIf="!(user$ | async)">
+  <p>Loading ...</p>
+</div>
+
+<div *ngIf="user$ | async as user">
+  <div class="row">
+    <div class="col">
+      <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          src="assets/images/standardProfilePicture.jpg"
+          class="card-img-top border profile-pic"
+          alt="..."
+        />
+      </div>
+    </div>
+    <div class="col">
+      <h4>Info</h4>
+      <div class="row">
+        <div class="col-1 col-sm-3">Email:</div>
+        <div class="col">{{ user.email }}</div>
+      </div>
+      <div class="row">
+        <div class="col-1 col-sm-3">Birthdate:</div>
+        <div class="col">{{ user.birthDate | date }}</div>
+      </div>
+      <div class="row">
+        <div class="col-1 col-sm-3">Phonenumber:</div>
+        <div class="col">{{ user.phoneNumber }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="div-divider pt-3 mb-2"></div>
+  <div class="row">
+    <div class="col">
+      <h4>Following:</h4>
+      <div class="row row-cols-1 row-cols-md-4">
+        <div *ngFor="let user of following$ | async">
+          <app-following-card
+            [user]="user"
+            [isOwner]="isOwner"
+            (event)="removeFollow($event)"
+          ></app-following-card>
+        </div>
+        <div *ngIf="(following$ | async)?.length == 0" class="col">
+          There are no people here, add a few!
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="div-divider pt-3 mb-2"></div>
+  <div class="row">
+    <div class="col">
+      <h4>Film list:</h4>
+      <div class="row">
+        <div class="col">
+          <div class="row row-cols-1 row-cols-md-3">
+            <div *ngFor="let film of user.films">
+              <film-list-card
+                [film]="film"
+                [isOwner]="isOwner"
+                (event)="removeFilm($event)"
+              ></film-list-card>
+            </div>
+            <div *ngIf="user.films.length == 0" class="col">
+              There are no films here, add a few!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

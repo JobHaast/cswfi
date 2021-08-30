@@ -1,0 +1,61 @@
+<h2 class="pl-1 pb-3">Create hall</h2>
+<form [formGroup]="hallForm" (ngSubmit)="onSubmit()">
+  <div class="row pb-3">
+    <div class="col">
+      <label>Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        required
+        name="name"
+      />
+      <small *ngIf="name.invalid && (name.dirty || name.touched)">
+        <span class="text-danger">Please enter a valid name</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Seats</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="seats"
+        required
+        name="seats"
+      />
+      <small *ngIf="seats.invalid && (seats.dirty || seats.touched)">
+        <span class="text-danger">Please enter a valid amount</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Description</label>
+      <textarea
+        type="text"
+        class="form-control"
+        formControlName="description"
+        required
+        name="description"
+      >
+      </textarea>
+      <small
+        *ngIf="
+          description.invalid && (description.dirty || description.touched)
+        "
+      >
+        <span class="text-danger">Please enter a valid description</span>
+      </small>
+    </div>
+  </div>
+  <div class="pt-3 pb-3">
+    <button
+      id="submitbutton"
+      type="submit"
+      class="btn btn-primary btn-block"
+      [disabled]="hallForm.invalid"
+    >
+      Create hall
+    </button>
+  </div>
+</form>

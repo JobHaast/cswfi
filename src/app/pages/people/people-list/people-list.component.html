@@ -1,0 +1,28 @@
+<div class="row pb-3">
+  <div class="align-content-start mr-auto pl-4">
+    <h1>Suggestions</h1>
+  </div>
+  <div class="div-divider"></div>
+</div>
+<div class="row row-cols-1 row-cols-md-3">
+  <div *ngFor="let user of suggestions$ | async">
+    <app-person-card
+      [user]="user"
+      (event)="addFriend($event)"
+    ></app-person-card>
+  </div>
+</div>
+<div class="row pb-3">
+  <div class="align-content-start mr-auto pl-4">
+    <h1>You might also know</h1>
+  </div>
+  <div class="div-divider"></div>
+</div>
+<div class="row row-cols-1 row-cols-md-3">
+  <div *ngFor="let user of friendsOfFriends$ | async">
+    <app-person-card
+      [user]="user"
+      (event)="addFriend($event)"
+    ></app-person-card>
+  </div>
+</div>

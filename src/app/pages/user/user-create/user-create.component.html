@@ -1,0 +1,115 @@
+<h2 class="pl-1 pb-3">Create user</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="row pb-3">
+    <div class="col">
+      <label>Firstname</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="firstName"
+        required
+        name="firstName"
+      />
+      <small
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+      >
+        <span class="text-danger">Invalid firstname</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Lastname</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        required
+        name="lastName"
+      />
+      <small *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+        <span class="text-danger">Invalid lastname</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Email</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="email"
+        required
+        name="email"
+      />
+      <small *ngIf="email.invalid && (email.dirty || email.touched)">
+        <span class="text-danger">Invalid email</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Birthdate</label>
+      <input
+        type="date"
+        class="form-control"
+        formControlName="birthDate"
+        name="birthDate"
+      />
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Password</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        required
+        name="password"
+      />
+      <small *ngIf="password.invalid && (password.dirty || password.touched)">
+        <span class="text-danger">Invalid password</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Confirm</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="confirm"
+        required
+        name="confirm"
+      />
+      <small *ngIf="confirm.invalid && (confirm.dirty || confirm.touched)">
+        <span class="text-danger">The given passwords do not match</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Phonenumber</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="phoneNumber"
+        name="phoneNumber"
+      />
+      <small
+        *ngIf="
+          phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
+        "
+      >
+        <span class="text-danger"
+          >The phonenumber is not valid (format: 0678787878)</span
+        >
+      </small>
+    </div>
+  </div>
+  <div class="pt-3 pb-3">
+    <button
+      type="submit"
+      value="submit"
+      class="btn btn-primary btn-block"
+      [disabled]="userForm.invalid"
+    >
+      Create user
+    </button>
+  </div>
+</form>

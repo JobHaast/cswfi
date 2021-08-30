@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-sm-6 col-md-8 col-lg-9">
+    <h1 id="aboutTitle">Over deze applicatie</h1>
+    <p>
+      Deze applicatie is gemaakt in het kader van het vak 'Clientside web
+      frameworks' van Avans Hogeschool Breda.
+    </p>
+    <h3>Angularex</h3>
+    <p>
+      In dit project wordt een full stack single page webapplicatie (SPA) die
+      een informatiesysteem biedt met betrekking tot een domein naar keuze
+      gemaakt. Het gekozen domein is een bioscoopsysteem waarin gebruikers een
+      overzicht van films kunnen zien, details van een film kunnen opvragen en
+      een voorstelling kunnen opvragen. <br /><br />
+      De enititeiten die zich binnen dit domein bevinden zijn: de films, de
+      filmvoorstellingen, de zalen, de gebruikers en eventueel de
+      acteurs/regiseurs. Een film bevat verschillende eigenschappen. Dit zijn:
+      een titel, het release jaar, de beschrijving, de verschillende genres waar
+      een film toe behoort, de acteurs, de regiseurs, de schrijvers, de lengte
+      van de film, een rating, en een foto.<br /><br />
+      Een filmvoorstelling heeft als attributen: een begintijd, een eindtijd, en
+      een zaal (eventueel zou je de prijs van kaartjes hier in op kunnen
+      opnemen. Dit ligt er alleen aan of deze prijs per film verschillen of
+      niet.).<br /><br />
+      Een zaal heeft als attributen: een aantal zitplaatsen en een naam<br /><br />
+    </p>
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          src="assets/images/profile-pic.JPG"
+          class="card-img-top rounded-circle border profile-pic"
+          alt="..."
+        />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Job Haast</h5>
+        <p class="card-text">Studentnummer: 2151057</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Entiteiten</h3>
+<div class="row">
+  <div class="col-sm-12 col-md-4">
+    <p>Film Entiteit</p>
+    <ul>
+      <li>id: string</li>
+      <li>title: string</li>
+      <li>description: string</li>
+      <li>realeased: date</li>
+      <li>genres: enum</li>
+      <li>actors: Actors</li>
+      <li>runtime: number</li>
+      <li>rating: number</li>
+      <li>banner: image</li>
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>Screening Entiteit</p>
+    <ul>
+      <li>id: string</li>
+      <li>start: datetime</li>
+      <li>end: datetime</li>
+      <li>hall: Hall</li>
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>Hall Entiteit</p>
+    <ul>
+      <li>id: string</li>
+      <li>name: string</li>
+      <li>seats: number</li>
+      <li>description: string</li>
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>Actor Entiteit</p>
+    <ul>
+      <li>id: string</li>
+      <li>firstName: string</li>
+      <li>lastName: string</li>
+      <li>birthDate: date</li>
+      <li>description: string</li>
+      <li>country: enum</li>
+    </ul>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <p>User Entiteit</p>
+    <ul>
+      <li>id: string</li>
+      <li>firstName: string</li>
+      <li>lastName: string</li>
+      <li>birthDate: date</li>
+      <li>email: string</li>
+      <li>password: string</li>
+      <li>phonenumber: string</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h3>Use Cases</h3>
+    <p>De applicatie biedt de volgende functionaliteit.</p>
+    <div *ngFor="let UC of useCases">
+      <client-side-web-frameworks-individual-usecase
+        [useCase]="UC"
+      ></client-side-web-frameworks-individual-usecase>
+    </div>
+  </div>
+</div>

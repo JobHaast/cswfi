@@ -1,0 +1,65 @@
+<div class="container-sm">
+  <div class="row justify-content-center align-items-center vertical-center">
+    <div class="col-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="pb-3 text-center">Login</h3>
+          <form [formGroup]="loginForm" (submit)="onSubmit()">
+            <div class="row pb-3">
+              <div class="col">
+                <input
+                  id="loginEmailInput"
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  required
+                  name="email"
+                  placeholder="Your Email *"
+                />
+                <small *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <span class="text-danger">Invalid email</span>
+                </small>
+              </div>
+            </div>
+            <div class="row pb-3">
+              <div class="col">
+                <input
+                  id="loginPasswordInput"
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                  required
+                  name="password"
+                  placeholder="Your Password *"
+                />
+                <small
+                  *ngIf="
+                    password.invalid && (password.dirty || password.touched)
+                  "
+                >
+                  <span class="text-danger">Invalid password</span>
+                </small>
+              </div>
+            </div>
+            <button
+              id="loginSubmitButton"
+              type="submit"
+              [disabled]="loginForm.invalid"
+              class="btn btn-primary form-control"
+            >
+              Login
+            </button>
+            <div class="row">
+              <div class="col text-left">
+                <a [routerLink]="['/register']">Register</a>
+              </div>
+              <div class="col text-right">
+                <a class="text-right">Forgot Password?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

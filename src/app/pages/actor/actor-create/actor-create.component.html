@@ -1,0 +1,106 @@
+<h2 class="pl-1 pb-3">Create actor</h2>
+<form [formGroup]="actorForm" (ngSubmit)="onSubmit()">
+  <div class="row pb-3">
+    <div class="col">
+      <label>First name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="firstName"
+        required
+        name="firstName"
+      />
+      <small
+        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+      >
+        <span class="text-danger">Please enter a valid first name</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Last name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        required
+        name="lastName"
+      />
+      <small *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+        <span class="text-danger">Please enter a valid last name</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Birthdate</label>
+      <input
+        type="date"
+        class="form-control"
+        formControlName="birthDate"
+        name="birthDate"
+      />
+      <small
+        *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)"
+      >
+        <span class="text-danger">Please choose a birthdate</span>
+      </small>
+    </div>
+    <div class="col">
+      <label>Country</label>
+      <select
+        class="form-control"
+        appendTo="body"
+        formControlName="country"
+        name="country"
+      >
+        <option [selected]="true" value="">Please select an option</option>
+        <option *ngFor="let country of countries | keyvalue">
+          {{ country.value }}
+        </option>
+      </select>
+      <small *ngIf="country.invalid && (country.dirty || country.touched)">
+        <span class="text-danger">Please choose a country</span>
+      </small>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col">
+      <label>Description</label>
+      <textarea
+        type="text"
+        class="form-control"
+        formControlName="description"
+        name="description"
+      ></textarea>
+    </div>
+    <div class="col">
+      <label>Image</label>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input
+            #imageInput
+            type="file"
+            class="custom-file-input"
+            accept="image/*"
+            name="image"
+            (change)="onImagePicked($event)"
+          />
+          <label class="custom-file-label">Choose file</label>
+        </div>
+      </div>
+      <small *ngIf="image.invalid && (image.dirty || image.touched)">
+        <span class="text-danger">Please choose an image for this actor</span>
+      </small>
+    </div>
+  </div>
+  <div class="pt-3 pb-3">
+    <button
+      id="submitbutton"
+      type="submit"
+      class="btn btn-primary btn-block"
+      [disabled]="actorForm.invalid"
+    >
+      Create actor
+    </button>
+  </div>
+</form>
